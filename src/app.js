@@ -51,10 +51,16 @@ buttonAddDiamond.addEventListener("click", () => {
 	drawDiamond(globalX, globalY);
 });
 
+const buttonAddEndElipse = document.querySelector("#addEndElipse");
+buttonAddEndElipse.addEventListener("click", () => {
+	console.log("test");
+	drawEndElipse(globalX, globalY);
+});
+
 let globalX = 1030; //1030
 let globalY = 10; //10
 
-//elipse
+//start elipse
 const elipse = roughSvg.ellipse(globalX + 250, globalY + 50, 500, 100, {
 	roughness: 0,
 	fill: "pink",
@@ -128,4 +134,17 @@ function drawDiamond(x, y) {
 
 	console.log(globalX);
 	console.log(globalY);
+}
+
+//end eclipse
+function drawEndElipse(x, y) {
+	const elipse = roughSvg.ellipse(globalX + 250, globalY + 50, 500, 100, {
+		roughness: 0,
+		fill: "pink",
+		fillStyle: "solid",
+	});
+	elipse.addEventListener("click", () => {
+		console.log("click");
+	});
+	svg.appendChild(elipse);
 }
