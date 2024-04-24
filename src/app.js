@@ -100,30 +100,32 @@ function drawRectangle(x, y) {
 
 //diamond
 function drawDiamond(x, y) {
-	const line = roughSvg.line(
-		globalX + 250,
-		globalY + 125,
-		globalX + 250,
-		globalY + 100
-	);
-	svg.appendChild(line);
+	a = 100 / Math.sqrt(2);
+	d = 100;
+	x = globalX + 250 - a / 2;
+	y = globalY + (d / 2 - a / 2);
 
-	const diamond = roughSvg.rectangle(
-		globalX + 250,
-		globalY + 50,
-		100 / Math.sqrt(2),
-		100 / Math.sqrt(2),
-		{
-			roughness: 0,
-			fill: "pink",
-			fillStyle: "solid",
-		}
-	);
+	const diamond = roughSvg.rectangle(x, y, a, a, {
+		roughness: 0,
+		fill: "pink",
+		fillStyle: "solid",
+	});
+
+	diamond.setAttribute("transform", `rotate(45, ${x + a / 2}, ${y + a / 2})`);
 	diamond.addEventListener("click", () => {
 		console.log("click");
 	});
 	svg.appendChild(diamond);
+
+	const line = roughSvg.line(
+		globalX + 250,
+		globalY + 100,
+		globalX + 250,
+		globalY + 100 + 25
+	);
+	svg.appendChild(line);
 	globalY = globalY + 125;
+
 	console.log(globalX);
 	console.log(globalY);
 }
